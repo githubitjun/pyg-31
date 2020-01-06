@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    $.ajax({
+      url:'xxx',
+      success:function(){
+
+        $.ajax({
+          url:'xx',
+          success:function(){
+
+          }
+        })
+      }
+    })
+
+    2 + 3 + 2
+    **/
+    const request1 = new Promise((resolve,reject) => {
+      setTimeout(() => {
+        resolve("请求1数据回来了")
+      }, 2000);
+    })
+
+    const request2 = new Promise((resolve,reject) => {
+      setTimeout(() => {
+        resolve("请求2数据回来了")
+      }, 3000);
+    })
+
+    const request3 = new Promise((resolve,reject) => {
+      setTimeout(() => {
+        resolve("request3数据回来了")
+      }, 1000);
+    })
+
+    // Promise.all([request1,request2,request3]).then(results => {
+    //   console.log(results)
+    // })
+
+    Promise.race([request1,request2,request3]).then(result => {
+      console.log(result)
+    })
+  </script>
+</body>
+</html>
